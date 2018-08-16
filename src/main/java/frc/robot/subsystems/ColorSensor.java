@@ -9,21 +9,24 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.GetColor;
 
 /**
  * Add your docs here.
  */
 public class ColorSensor extends Subsystem {
   
-  I2C colorSensor = new I2C(I2C.Port.kOnboard, 0x3C);
+  public I2C colorSensor = new I2C(I2C.Port.kOnboard, 0x3C);
 
   public int getColor(){
-      
+      int color = 0;
+      SmartDashboard.putBoolean("ColorBool", colorSensor.write(0x04, color));
+      return color;
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new GetColor());
   }
 }

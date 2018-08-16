@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -8,25 +8,24 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-/**
- * An example command.  You can replace me with your own command.
- */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
-    // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+public class GetColor extends Command {
+  public GetColor() {
+    requires(Robot.colorSensor);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    SmartDashboard.putBoolean("LED", Robot.colorSensor.colorSensor.write(0x03, 0x00));
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    SmartDashboard.putNumber("Color", Robot.colorSensor.getColor());
   }
 
   // Make this return true when this Command no longer needs to run execute()
