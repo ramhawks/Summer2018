@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.ShannonDrive;
 
@@ -21,21 +22,22 @@ import frc.robot.commands.ShannonDrive;
  */
 public class Drivetrain extends Subsystem {
   
-  WPI_TalonSRX right1;
+  //talons are 2, victors are 1
+  WPI_TalonSRX left2;
   WPI_TalonSRX right2;
   WPI_VictorSPX left1;
-  WPI_VictorSPX left2;
+  WPI_VictorSPX right1;
 
   private DifferentialDrive arcadeDrive;
   
   public void DriveTrain(){
-    right1 = new WPI_TalonSRX(RobotMap.right_1);
+    left2 = new WPI_TalonSRX(RobotMap.left_2);
     right2 = new WPI_TalonSRX(RobotMap.right_2);
     left1 = new WPI_VictorSPX(RobotMap.left_1);
-    left2 = new WPI_VictorSPX(RobotMap.left_2);
+    right1 = new WPI_VictorSPX(RobotMap.right_1);
 
-    left1.setInverted(true);
-    left2.setInverted(true);
+    //left1.setInverted(true);
+    //right1.setInverted(true);
 
     SpeedControllerGroup leftSide = new SpeedControllerGroup(left1, left2);
     SpeedControllerGroup rightSide = new SpeedControllerGroup(right1, right2);
@@ -50,5 +52,12 @@ public class Drivetrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
    setDefaultCommand(new ShannonDrive());
+  }
+
+  public void printMotorControllers(){
+    SmartDashboard.putNumber(left1.getName(), left1.get());
+    SmartDashboard.putNumber(left2.getName(), left2.get());
+    SmartDashboard.putNumber(right1.getName(), right1.get());
+    SmartDashboard.putNumber(right2.getName(), right2.get());
   }
 }

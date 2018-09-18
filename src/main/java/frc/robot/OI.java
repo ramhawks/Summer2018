@@ -8,7 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,8 +20,8 @@ public class OI {
   public OI(){
 
     //don't ask...
-    xboxController.setXChannel(4);
-    xboxController.setYChannel(1);
+    xboxController.setXChannel(1);
+    xboxController.setYChannel(4);
   }
 
 }

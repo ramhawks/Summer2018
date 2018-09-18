@@ -19,8 +19,9 @@ public class RobotMap {
   public static final int xbox_controller = 0;
 
   //motor controllers
-  public static final int left_1 = 16;
-  public static final int left_2 = 17;
-  public static final int right_1 = 14;
+  //talons are 2, victors are 1
+  public static final int left_1 = 17;
+  public static final int left_2 = 14;
+  public static final int right_1 = 16;
   public static final int right_2 = 15;
 }
